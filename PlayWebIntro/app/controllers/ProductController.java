@@ -5,21 +5,25 @@ import model.Product;
 import static play.data.Form.form;
 
 import play.data.Form;
+import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.ProductServices;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProductController extends Controller {
+
+    @Transactional
     public Result index() {
-        Map<Integer, Product> products = new HashMap<>();
-        products.put(1, new Product(1, "MacBook Pro 2016", 60000000));
-        products.put(2, new Product(2, "Dell Precision", 40000000));
-        products.put(3, new Product(3, "Lamborghini", 9100000000.0));
-        products.put(4, new Product(4, "iPhone 8", 24000000));
-        products.put(5, new Product(5, "Luxury Penthouse", 8000000000.0));
-        return ok(views.html.products.index.render(products));
+//        Map<Integer, Product> products = new HashMap<>();
+//        products.put(1, new Product(1, "MacBook Pro 2016", 60000000));
+//        products.put(2, new Product(2, "Dell Precision", 40000000));
+//        products.put(3, new Product(3, "Lamborghini", 9100000000.0));
+//        products.put(4, new Product(4, "iPhone 8", 24000000));
+//        products.put(5, new Product(5, "Luxury Penthouse", 8000000000.0));
+        return ok(views.html.products.index.render(ProductServices.getAll()));
     }
 
     public Result create() {

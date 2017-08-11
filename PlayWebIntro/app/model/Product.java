@@ -1,16 +1,12 @@
 package model;
 
-import play.data.validation.Constraints;
+import javax.persistence.*;
 
+@Table(name = "products")
+@Entity
 public class Product {
-    @Constraints.Required(message = "ID is required")
     private int id;
-
-    @Constraints.Required(message = "Name is required")
-    @Constraints.Pattern(value = "[a-zA-Z0-9 ]+", message = "Name must not contain special characters! (e.g: !, @, #, $, %,...)")
     private String name;
-
-    @Constraints.Required(message = "Price is required")
     private double price;
 
     public Product() {
@@ -22,6 +18,8 @@ public class Product {
         this.price = price;
     }
 
+    @Id
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -30,6 +28,8 @@ public class Product {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -38,6 +38,8 @@ public class Product {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "price")
     public double getPrice() {
         return price;
     }
