@@ -14,11 +14,16 @@
         <tbody>
         @for(product <- products) {
             <tr>
-                <td>@product.getId()</td>
+                <td>@product.getId</td>
                 <td>@product.getName</td>
                 <td>@("%.2f".format(product.getPrice)) VND</td>
             </tr>
         }
         </tbody>
     </table>
+    @helper.form(action = routes.ProductController.create()) {
+        <button class="btn btn-primary">
+            Add new Product
+        </button>
+    }
 }
