@@ -1,8 +1,16 @@
 package model;
 
+import play.data.validation.Constraints;
+
 public class Product {
+    @Constraints.Required(message = "ID is required")
     private int id;
+
+    @Constraints.Required(message = "Name is required")
+    @Constraints.Pattern(value = "[a-zA-Z0-9 ]+", message = "Name must not contain special characters! (e.g: !, @, #, $, %,...)")
     private String name;
+
+    @Constraints.Required(message = "Price is required")
     private double price;
 
     public Product() {

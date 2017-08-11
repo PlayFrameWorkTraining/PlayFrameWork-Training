@@ -1,23 +1,24 @@
 @import model.Product
-@(products: java.util.List[Product])
+@(products: java.util.Map[Integer, Product])
 
-@main("Products") {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-        @for(product <- products) {
-            <tr>
-                <td>@product.getId</td>
-                <td>@product.getName</td>
-                <td>@("%.2f".format(product.getPrice)) VND</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-}
+    @main("Products") {
+        <h1>List of Products</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for((id, product) <- products) {
+                <tr>
+                    <td>@id</td>
+                    <td>@product.getName</td>
+                    <td>@("%.2f".format(product.getPrice)) VND</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
