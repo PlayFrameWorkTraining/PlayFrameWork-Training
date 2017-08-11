@@ -1,0 +1,23 @@
+@import model.Product
+@(products: java.util.List[Product])
+
+@main("Products") {
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(product <- products) {
+            <tr>
+                <td>@product.getId</td>
+                <td>@product.getName</td>
+                <td>@("%.2f".format(product.getPrice)) VND</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

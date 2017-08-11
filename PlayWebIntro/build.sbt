@@ -1,4 +1,4 @@
-name := """FirstApp"""
+name := """PlayWebIntro"""
 
 version := "1.0-SNAPSHOT"
 
