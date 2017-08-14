@@ -9,6 +9,8 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Edit</th>
+                <th>Remove</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +19,7 @@
                 <td>@product.getId</td>
                 <td>@product.getName</td>
                 <td>@("%.2f".format(product.getPrice)) VND</td>
+                <td><a href="/products/edit/@product.getId">Edit</a></td>
             </tr>
         }
         </tbody>

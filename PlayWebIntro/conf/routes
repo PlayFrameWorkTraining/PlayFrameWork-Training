@@ -3,13 +3,19 @@
 # ~~~~
 
 # Home Page
-GET         /                       controllers.ProductController.index
+GET         /                         controllers.ProductController.index
 
 # Go to Create Product page
-GET         /products/create        controllers.ProductController.create
+GET         /products/create          controllers.ProductController.create
 
 # Create and Store created Product
-POST        /products/store         controllers.ProductController.store
+POST        /products/store           controllers.ProductController.store
+
+# Go to Edit Product page
+GET         /products/edit/:id        controllers.ProductController.edit(id:Integer)
+
+# Edit and Update Product
+POST        /products/update          controllers.ProductController.update
 
 # Resources - Bootstrap, Images, etc.
-GET         /assets/*file           controllers.Assets.versioned(path="/public/resources", file: Asset)
+GET         /assets/*file             controllers.Assets.versioned(path="/public/resources", file: Asset)

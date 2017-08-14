@@ -10,9 +10,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import services.ProductServices;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ProductController extends Controller {
 
     @Transactional
@@ -30,7 +27,28 @@ public class ProductController extends Controller {
         Form<Product> filledForm = form(Product.class).bindFromRequest();
         if (filledForm.hasErrors())
             return badRequest(views.html.products.create.render(filledForm));
-        ProductServices.insert(filledForm.get());
-        return index();
+        if (ProductServices.insert(filledForm.get()))
+            return index();
+        filledForm.reject("id", "ID already existed");
+        return badRequest(views.html.products.create.render(filledForm));
+    }
+
+    @Transactional
+    public Result edit(int id) {
+        Product product = ProductServices.findById(id);
+        Form<Product> form = form(Product.class).fill(product);
+        return ok(views.html.products.edit.render(form));
+    }
+
+    @Transactional
+    public Result update() {
+        Form<Product> filledForm = form(Product.class).bindFromRequest();
+        if (filledForm.hasErrors())
+            return badRequest(views.html.products.edit.render(filledForm));
+        ProductServices.update(
+                Integer.parseInt(filledForm.field("id").value()),
+                filledForm.field("name").value(),
+                Double.parseDouble(filledForm.field("price").value()));
+        return ok(views.html.products.index.render(ProductServices.getAll()));
     }
 }
