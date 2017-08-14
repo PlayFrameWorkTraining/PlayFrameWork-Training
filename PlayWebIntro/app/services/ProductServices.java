@@ -20,12 +20,8 @@ public class ProductServices {
     }
 
     @Transactional
-    public static boolean insert(Product product) {
-        if (findById(product.getId()) == null) {
-            JPA.em().persist(product);
-            return true;
-        }
-        return false;
+    public static void insert(Product product) {
+        JPA.em().persist(product);
     }
 
     @Transactional
@@ -33,5 +29,11 @@ public class ProductServices {
         Product product = findById(id);
         product.setName(name);
         product.setPrice(price);
+    }
+
+    @Transactional
+    public static void delete(int id) {
+        Product product = findById(id);
+        JPA.em().remove(product);
     }
 }

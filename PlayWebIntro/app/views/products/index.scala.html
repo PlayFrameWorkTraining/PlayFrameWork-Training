@@ -20,6 +20,13 @@
                 <td>@product.getName</td>
                 <td>@("%.2f".format(product.getPrice)) VND</td>
                 <td><a href="/products/edit/@product.getId">Edit</a></td>
+                <td>
+                @helper.form(action = routes.ProductController.delete(product.getId)) {
+                    <button class="btn btn-danger">
+                        Delete
+                    </button>
+                }
+                </td>
             </tr>
         }
         </tbody>

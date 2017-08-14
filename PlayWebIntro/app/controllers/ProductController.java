@@ -27,10 +27,8 @@ public class ProductController extends Controller {
         Form<Product> filledForm = form(Product.class).bindFromRequest();
         if (filledForm.hasErrors())
             return badRequest(views.html.products.create.render(filledForm));
-        if (ProductServices.insert(filledForm.get()))
-            return index();
-        filledForm.reject("id", "ID already existed");
-        return badRequest(views.html.products.create.render(filledForm));
+        ProductServices.insert(new Product(filledForm.get().getName(), filledForm.get().getPrice()));
+        return index();
     }
 
     @Transactional
@@ -49,6 +47,12 @@ public class ProductController extends Controller {
                 Integer.parseInt(filledForm.field("id").value()),
                 filledForm.field("name").value(),
                 Double.parseDouble(filledForm.field("price").value()));
-        return ok(views.html.products.index.render(ProductServices.getAll()));
+        return index();
+    }
+
+    @Transactional
+    public Result delete(int id) {
+        ProductServices.delete(id);
+        return index();
     }
 }
