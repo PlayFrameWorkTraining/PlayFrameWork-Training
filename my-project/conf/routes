@@ -12,12 +12,13 @@ GET     /message                    controllers.AsyncController.message
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
+#getStudent
+GET     /getstudent                 controllers.StudentController.getStudentFromDB
+POST    /getstudent                 controllers.StudentController.updateStudent
 
-#Restful service endpoint for retrieving chemical
-GET     /element                    controllers.ElementController.element
+#deleteStudent
+POST    /getstudent                 controllers.StudentController.deleteStudent
 
-#get template musche
-GET     /template                   controllers.ElementController.template
-GET     /studentTemplate            controllers.StudentController.template
-#search student API
-GET     /search                      controllers.StudentController.searchStudent
+#accountStudent
+GET     /createStudent              controllers.StudentController.initStudent
+POST    /createStudent              controllers.StudentController.createStudent

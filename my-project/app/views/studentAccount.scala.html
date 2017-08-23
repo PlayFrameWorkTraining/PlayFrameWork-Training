@@ -1,0 +1,24 @@
+@import modelDB.Student
+@(form: Form[Student])
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+    <h1>Create Account</h1>
+    <form action="@routes.StudentController.createStudent()" method="post">
+      <div>
+        <label for="name">Name: </label>
+        <input type="text" name="name" value="@form("name").value()" />
+      </div>
+      <div>
+        <label for="phone">Phone: </label>
+        <input type="text" name="phone" value="@form("phone").value()" />
+      </div>
+      <input type="submit" value="Create" id="submit" name="submit" />
+    </form>
+</body>
+</html>

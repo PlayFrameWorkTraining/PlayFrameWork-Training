@@ -1,4 +1,4 @@
-package models;
+package modelDB;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by Thien on 8/22/2017.
+ * Created by Thien on 8/15/2017.
  */
 @Entity
 public class Student {
@@ -14,13 +14,10 @@ public class Student {
     private String name;
     private String phone;
 
-    public Student(int studentId, String name, String phone) {
-        this.studentId = studentId;
+    public Student() {}
+    public Student(String name, String phone) {
         this.name = name;
         this.phone = phone;
-    }
-
-    public Student() {
     }
 
     @Id
