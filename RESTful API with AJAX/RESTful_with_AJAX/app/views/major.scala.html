@@ -1,0 +1,43 @@
+@*
+* This template takes a single argument, a String containing a
+* message to display.
+*@
+@import models.Major
+@(majors: java.util.List[Major])
+@*
+* Call the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is an `Html` object containing the body of the page.
+*@
+@main("Major") {
+    @*
+    * Get an `Html` object by calling the built-in Play welcome
+    * template and passing a `String` message.
+    *@
+    @* @welcome(message, style = "java") *@
+    <h1>List of Majors</h1>
+    <div class="row">
+        <form class="navbar-form navbar-left" id="search_major_form">
+            <div class="form-group">
+                <input class="form-control" placeholder="Search" name="search_major" id="search_major_value">
+            </div>
+            <input type="submit" class="btn btn-info" value="Search" />
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(major <- majors) {
+            <tr>
+                <td>@major.getId</td>
+                <td>@major.getName</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

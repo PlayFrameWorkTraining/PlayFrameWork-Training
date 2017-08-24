@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+
+    <persistence-unit name="HibernatePersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <non-jta-data-source>DefaultDS</non-jta-data-source>
+        <class>models.Major</class>
+        <class>models.MajorHasSubject</class>
+        <class>models.Subject</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        </properties>
+    </persistence-unit>
+</persistence>
