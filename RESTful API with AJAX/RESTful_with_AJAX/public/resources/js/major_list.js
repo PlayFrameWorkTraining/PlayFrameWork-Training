@@ -9,8 +9,13 @@ $(document).ready(function () {
             type: "GET",
             contentType: "application/json",
             success: function (data) {
+                // empty current table body
+                $('#major_table_body').empty();
+
+                // add row to table
                 $.each(data, function (i, major) {
-                    console.log(major.name);
+                    var row = '<tr><td>' + major.id + '</td><td>' + major.name + '</td></tr>';
+                    $('#major_table').find('tbody').append(row);
                 });
             }
         });
